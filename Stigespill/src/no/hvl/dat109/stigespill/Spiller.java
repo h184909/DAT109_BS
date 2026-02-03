@@ -1,3 +1,5 @@
+package no.hvl.dat109.stigespill;
+
 public class Spiller {
     private final String navn;
     private final Brikke brikke = new Brikke();

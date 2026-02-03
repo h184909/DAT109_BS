@@ -1,3 +1,5 @@
+package no.hvl.dat109.stigespill;
+
 public class Rute {
     private final int nummer;
 
@@ -11,6 +13,6 @@ public class Rute {
 
     @Override
     public String toString() {
-        return "Rute " + nummer;
+        return "no.hvl.dat109.stigespill.Rute " + nummer;
     }
 }

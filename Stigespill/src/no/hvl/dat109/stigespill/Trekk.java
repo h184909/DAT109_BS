@@ -1,3 +1,5 @@
+package no.hvl.dat109.stigespill;
+
 public class Trekk {
     private final String spillerNavn;
     private final int kast;

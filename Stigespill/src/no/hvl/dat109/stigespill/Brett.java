@@ -1,3 +1,5 @@
+package no.hvl.dat109.stigespill;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

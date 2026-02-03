@@ -1,3 +1,5 @@
+package no.hvl.dat109.stigespill;
+
 import java.util.*;
 
 public class Main {
@@ -11,7 +13,7 @@ public class Main {
         for (int i = 1; i <= antall; i++) {
             System.out.print("Navn på spiller " + i + ": ");
             String navn = sc.nextLine().trim();
-            if (navn.isEmpty()) navn = "Spiller" + i;
+            if (navn.isEmpty()) navn = "no.hvl.dat109.stigespill.Spiller" + i;
             spillere.add(new Spiller(navn));
         }
 

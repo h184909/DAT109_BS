@@ -1,3 +1,5 @@
+package no.hvl.dat109.stigespill;
+
 public class Brikke {
     private int posisjon = 1;
 
