@@ -1,5 +1,13 @@
 package no.hvl.dat109.stigespill;
 
+/**
+ * Representerer ett trekk i spillet (historikk).
+ * Brukes til å lagre hva som skjedde i en tur:
+ * - spiller
+ * - terningkast
+ * - fra/til-posisjon
+ * - evt. effekt (stige/slange/overshoot osv.).
+ */
 public class Trekk {
     private final String spillerNavn;
     private final int kast;

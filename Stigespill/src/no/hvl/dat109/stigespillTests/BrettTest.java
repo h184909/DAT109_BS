@@ -4,6 +4,9 @@ import no.hvl.dat109.stigespill.Brett;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tester overshoot-regel og slange/stige-mapping.
+ */
 public class BrettTest {
 
     @Test

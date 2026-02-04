@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Representerer brettet i slange- og stigespill.
+ * Brettet består av 100 ruter (1..100) og kan inneholde slanger og stiger.
+ * Slanger/stiger representeres som en mapping fra startposisjon til endeposisjon.
+ */
 public class Brett {
 
     private final int sisteRute = 100;
@@ -15,6 +20,9 @@ public class Brett {
      */
     private final Map<Integer, Integer> slangerOgStiger = new HashMap<>();
 
+    /**
+     * Oppretter et nytt brett og lager rutene 1..100.
+     */
     public Brett() {
         for (int i = 1; i <= sisteRute; i++) {
             ruter.add(new Rute(i));
@@ -26,7 +34,13 @@ public class Brett {
     }
 
     /**
-     * inkluderer regel for om kast blir større enn siste rute -> bli stående
+     * Flytter fra en posisjon basert på terningkast.
+     * Regelen "må treffe 100" håndteres her:
+     * Hvis (fra + kast) blir større enn 100, returneres fra-posisjon (spilleren står).
+     *
+     * @param fra posisjon før flytt
+     * @param kast terningkast (1..6)
+     * @return ny posisjon, eller fra hvis overshoot
      */
     public int flytt(int fra, int kast) {
 
@@ -37,10 +51,23 @@ public class Brett {
         return total;
     }
 
+    /**
+     * Sjekker om det finnes slange eller stige fra gitt posisjon.
+     *
+     * @param pos posisjon spilleren lander på
+     * @return endeposisjon hvis det finnes slange/stige, ellers pos selv
+     */
     public int anvendSlangeEllerStige(int pos) {
         return slangerOgStiger.getOrDefault(pos, pos);
     }
 
+    /**
+     * Legger inn en slange eller stige i mappingen.
+     * Metoden validerer enkelt at posisjoner er innenfor 1..99, og at fra != til.
+     *
+     * @param fra startposisjon for slange/stige
+     * @param til endeposisjon for slange/stige
+     */
     public void setSlangerOgStiger(int fra, int til) {
         if (fra < 1 || fra >= sisteRute) return;
         if (til < 1 || til >= sisteRute) return;
@@ -48,6 +75,12 @@ public class Brett {
         slangerOgStiger.put(fra, til);
     }
 
+    /**
+     * Lager et standardbrett med et forhåndsdefinert sett av slanger og stiger (de samme som bildet i oppgaveteksten).
+     * Brukes i denne enkle konsollversjonen.
+     *
+     * @return et brett med slanger og stiger
+     */
     public static Brett standardBrett() {
         Brett b = new Brett();
 

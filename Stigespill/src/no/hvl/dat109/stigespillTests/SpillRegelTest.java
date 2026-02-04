@@ -4,6 +4,10 @@ import no.hvl.dat109.stigespill.Spiller;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test som sjekker at "må trille 6"-flagget
+ * kan settes og at det ikke flytter brikken av seg selv.
+ */
 public class SpillRegelTest {
 
     @Test

@@ -4,6 +4,9 @@ import no.hvl.dat109.stigespill.Spiller;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tester støttefunksjoner for "3 seksere på rad".
+ */
 public class SpillerTest {
 
     @Test

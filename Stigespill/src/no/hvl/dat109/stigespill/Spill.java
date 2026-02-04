@@ -2,6 +2,13 @@ package no.hvl.dat109.stigespill;
 
 import java.util.*;
 
+/**
+ * Denne klassen har ansvar for:
+ * - Rundeloop (spillerne tar tur etter tur).
+ * - Utføre et trekk for en spiller (kaste terning, flytte brikke).
+ * - Håndtere regler: må treffe 100, slange/stige, 6 gir ekstra kast, og 3x6 på rad gir reset.
+ * - Bygge opp historikk over alle trekk.
+ */
 public class Spill {
     private final List<Spiller> spillere;
     private final Brett brett;
@@ -11,6 +18,13 @@ public class Spill {
     private boolean ferdig = false;
     private int rundeNr = 1;
 
+    /**
+     * Oppretter et nytt spill.
+     *
+     * @param spillere 2-4 spillere
+     * @param brett Det allerede opprettet brettet som inneholder slanger og stiger
+     * @param terning terningen som bruker (1-6)
+     */
     public Spill(List<Spiller> spillere, Brett brett, Terning terning) {
 
         if (spillere.size() < 2 || spillere.size() > 4) {
@@ -22,9 +36,9 @@ public class Spill {
     }
 
     /**
-     * Oppretter spill, og så looper runder -> hver spiller tar tur til en vinner
+     * Starter spillet og spiller runder helt til en spiller vinner.
+     * En runde består av at hver spiller i listen tar ett trekk (med evt. ekstra kast).
      */
-
     public void spill() {
 
         System.out.println("Spillet starter! Alle starter på rute 1.");
@@ -41,6 +55,18 @@ public class Spill {
 
     }
 
+    /**
+     * Gjennomfører én spillers tur.
+     * Turen kan bestå av flere kast hvis spilleren triller 6 (ekstra kast).
+     * Reglene som håndteres her:
+     *   - 3 seksere på rad → spilleren sendes til rute 1 og må trille 6 for å starte igjen.
+     *   - Hvis spilleren må trille 6 og ikke gjør det → ingen bevegelse.
+     *   - Må treffe 100: overshoot → står stille.
+     *   - Hvis spiller lander på slange/stige → flyttes videre.
+     *   - 6 gir ekstra kast.
+     *
+     * @param spiller spilleren som skal ta tur
+     */
     private void spillTrekk(Spiller spiller) {
         System.out.println("\n" + spiller.getNavn() + " sin tur. (posisjon=" + spiller.getBrikke().getPosisjon() + ")");
 
@@ -107,7 +133,7 @@ public class Spill {
 
             // Sjekk vinner (må treffe 100)
             if (spiller.getBrikke().getPosisjon() == brett.getSisteRute()) {
-                System.out.println("\n🎉 " + spiller.getNavn() + " vant! (treffet 100)");
+                System.out.println("\n🎉 " + spiller.getNavn() + " vant! (truffet 100)");
                 ferdig = true;
                 break;
             }
